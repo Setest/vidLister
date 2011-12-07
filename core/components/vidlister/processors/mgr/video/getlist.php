@@ -30,6 +30,8 @@ $videos = $modx->getIterator('vlVideo', $c);
 /* iterate */
 $list = array();
 foreach ($videos as $video) {
-    $list[]= $video->toArray();
+    $video = $video->toArray();
+    $video['jsondata'] = $modx->toJSON($video['jsondata']);
+    $list[]= $video;
 }
 return $this->outputArray($list,$count);

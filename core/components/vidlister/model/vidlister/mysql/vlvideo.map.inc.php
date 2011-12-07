@@ -9,6 +9,7 @@ $xpdo_meta_map['vlVideo']= array (
     'videoId' => '',
     'name' => '',
     'description' => '',
+    'keywords' => '',
     'author' => '',
     'duration' => 0,
     'jsondata' => '',
@@ -54,6 +55,13 @@ $xpdo_meta_map['vlVideo']= array (
       'null' => false,
       'default' => '',
     ),
+    'keywords' => 
+    array (
+      'dbtype' => 'text',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
+    ),
     'author' => 
     array (
       'dbtype' => 'varchar',
@@ -74,7 +82,7 @@ $xpdo_meta_map['vlVideo']= array (
     'jsondata' => 
     array (
       'dbtype' => 'text',
-      'phptype' => 'string',
+      'phptype' => 'json',
       'null' => false,
       'default' => '',
     ),

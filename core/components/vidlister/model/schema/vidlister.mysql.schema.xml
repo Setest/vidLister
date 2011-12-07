@@ -7,9 +7,10 @@
         <field key="videoId" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
         <field key="description" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="keywords" dbtype="text" phptype="string" null="false" default=""/>
         <field key="author" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
         <field key="duration" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
-        <field key="jsondata" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="jsondata" dbtype="text" phptype="json" null="false" default=""/>
     </object>
 
 </model>

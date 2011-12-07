@@ -69,14 +69,15 @@ Ext.extend(VidLister.grid.Videos,MODx.grid.Grid,{
     ,doImport: function(btn,e) {
 
         var console = MODx.load({
-           xtype: 'modx-console'
-           ,register: 'mgr'
-           ,topic: '/vidlisterimport/'
-           ,show_filename: 0
-           ,listeners: {
-             'shutdown': {fn:function() {
-                 window.location.reload();
-             },scope:this}
+            xtype: 'modx-console'
+            ,title: _('vidlister.import')
+            ,register: 'mgr'
+            ,topic: '/vidlisterimport/'
+            ,show_filename: 0
+            ,listeners: {
+                'shutdown': {fn:function() {
+                    window.location.reload();
+                },scope:this}
            }
         });
         console.show(Ext.getBody());

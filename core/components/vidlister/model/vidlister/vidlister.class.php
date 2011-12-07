@@ -101,31 +101,4 @@ class VidLister {
         return $chunk;
     }
 
-    public function request($params = array()) {
-        $loaded = $this->_getClient();
-        if (!$loaded) {
-            $this->modx->log(modX::LOG_LEVEL_ERROR,'[VidLister] Could not load REST client.');
-            return true;
-        }
-
-        $response = $this->modx->rest->request($this->config['restHost'],$this->config['restPath'],$this->config['restMethod'],$params);
-        $responseXml = $response->toXml();
-        return $responseXml;
-    }
-
-    /**
-     * Get the REST Client
-     *
-     * @access private
-     * @return modRestClient/boolean
-     */
-    private function _getClient() {
-        if (empty($this->modx->rest)) {
-            $this->modx->getService('rest','rest.modRestClient');
-            $loaded = $this->modx->rest->getConnection();
-            if (!$loaded) return false;
-        }
-        return $this->modx->rest;
-    }
-
 }
