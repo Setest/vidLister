@@ -1,4 +1,4 @@
 <?php
-$modx->getService('vidlister','VidLister',$modx->getOption('vidlister.core_path',null,$modx->getOption('core_path').'components/vidlister/').'model/vidlister/',$scriptProperties);
-
-return '';
+$modx->log(modX::LOG_LEVEL_INFO, 'Starting import by triggering VidListerImport event');
+$modx->invokeEvent('OnVidListerImport');
+$modx->log(modX::LOG_LEVEL_INFO, 'COMPLETED');

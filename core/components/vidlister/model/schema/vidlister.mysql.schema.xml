@@ -3,9 +3,13 @@
 
     <object class="vlVideo" table="vidlister_videos" extends="xPDOSimpleObject">
         <field key="active" dbtype="int" precision="1" phptype="integer" null="false" default="0"/>
+        <field key="source" dbtype="varchar" precision="255" phptype="string" null="false" default="youtube"/>
+        <field key="videoId" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
         <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
-        <field key="url" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
         <field key="description" dbtype="text" phptype="string" null="false" default=""/>
+        <field key="author" dbtype="varchar" precision="255" phptype="string" null="false" default=""/>
+        <field key="duration" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" default="0" />
+        <field key="jsondata" dbtype="text" phptype="string" null="false" default=""/>
     </object>
 
 </model>

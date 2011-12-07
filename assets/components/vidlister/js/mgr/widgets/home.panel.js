@@ -12,7 +12,7 @@ VidLister.panel.Home = function(config) {
             ,bodyStyle: 'padding: 10px'
             ,defaults: { border: false ,autoHeight: true }
             ,items: [{
-                title: _('vidlister.desc')
+                title: _('vidlister.videos')
                 ,border: false
                 ,defaults: { autoHeight: true, border: false }
                 ,items: [{

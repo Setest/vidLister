@@ -6,7 +6,7 @@ VidLister.grid.Videos = function(config) {
         ,baseParams: {
             action: 'mgr/video/getlist'
         }
-        ,fields: ['id', 'active', 'name']
+        ,fields: ['id', 'active', 'source', 'videoId', 'name', 'description', 'author', 'duration', 'jsondata']
         ,paging: true
         ,border: false
         ,frame: false
@@ -30,13 +30,26 @@ VidLister.grid.Videos = function(config) {
             ,dataIndex: 'name'
             ,sortable: true
             ,width: 10
+        },{
+            header: _('vidlister.video.source')
+            ,dataIndex: 'source'
+            ,sortable: true
+            ,width: 4
+        },{
+            header: _('vidlister.video.author')
+            ,dataIndex: 'author'
+            ,sortable: true
+            ,width: 4
+        },{
+            header: _('vidlister.video.duration')
+            ,dataIndex: 'duration'
+            ,sortable: true
+            ,width: 2
         }]
-        /*
         ,tbar: [{
             text: _('vidlister.import')
             ,handler: this.doImport
         }]
-        */
     });
     VidLister.grid.Videos.superclass.constructor.call(this,config)
 };
@@ -54,6 +67,33 @@ Ext.extend(VidLister.grid.Videos,MODx.grid.Grid,{
         return true;
     }
     ,doImport: function(btn,e) {
+
+        var console = MODx.load({
+           xtype: 'modx-console'
+           ,register: 'mgr'
+           ,topic: '/vidlisterimport/'
+           ,show_filename: 0
+           ,listeners: {
+             'shutdown': {fn:function() {
+                 window.location.reload();
+             },scope:this}
+           }
+        });
+        console.show(Ext.getBody());
+
+        MODx.Ajax.request({
+            url: VidLister.config.connectorUrl
+            ,params: {
+                action: 'mgr/video/import'
+                ,register: 'mgr'
+                ,topic: '/vidlisterimport/'
+            }
+            ,listeners: {
+                'success':{fn:function() {
+                    console.fireEvent('complete');
+                },scope:this}
+            }
+        });
 
     }
     ,updateVideo: function(btn,e) {
@@ -125,6 +165,9 @@ VidLister.window.Video = function(config) {
                         xtype: 'hidden'
                         ,name: 'id'
                     },{
+                        xtype: 'hidden'
+                        ,name: 'source'
+                    },{
                         xtype: 'xcheckbox'
                         ,fieldLabel: _('vidlister.video.active')
                         ,name: 'active'
@@ -135,8 +178,23 @@ VidLister.window.Video = function(config) {
                         ,name: 'name'
                         ,width: 300
                         ,allowBlank: false
+                    },{
+                        xtype: 'textarea'
+                        ,fieldLabel: _('vidlister.video.description')
+                        ,name: 'description'
+                        ,width: 300
+                        ,allowBlank: false
                     }
                 ]
+            },{
+                title: _('vidlister.video.advanced')
+                ,items: [{
+                    xtype: 'textarea'
+                    ,fieldLabel: _('vidlister.video.jsondata')
+                    ,name: 'jsondata'
+                    ,width: 300
+                    ,allowBlank: true
+                }]
             }]
         }]
     });
