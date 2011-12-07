@@ -26,7 +26,7 @@ $modx->setPlaceholder($totalVar, $modx->getCount('vlVideo', $c));
 
 $c->limit($limit, $offset);
 
-$videos = $modx->getCollection('vlVideo');
+$videos = $modx->getCollection('vlVideo', $c);
 foreach($videos as $video)
 {
     $output .= $modx->getChunk($tpl, $video->toArray());

@@ -10,7 +10,7 @@ $_lang['vidlister.desc'] = 'Show your youtube videos on your site';
 
 $_lang['vidlister.import'] = 'Import videos';
 $_lang['vidlister.import.started'] = 'Started [[+source]] import for [[+user]]';
-$_lang['vidlister.import.complete'] = 'Import complete';
+$_lang['vidlister.import.complete'] = 'Imported [[+total]] [[+source]] videos ([[+new]] new) for user [[+user]].';
 $_lang['vidlister.import.err'] = 'Import failed.';
 $_lang['vidlister.import.err.client'] = 'REST client unavailable.';
 
