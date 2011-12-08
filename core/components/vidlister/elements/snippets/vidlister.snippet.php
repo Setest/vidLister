@@ -1,6 +1,8 @@
 <?php
 $modx->getService('vidlister','VidLister',$modx->getOption('vidlister.core_path',null,$modx->getOption('core_path').'components/vidlister/').'model/vidlister/',$scriptProperties);
 
+$modx->lexicon->load('vidlister:default');
+
 //settings
 $tpl = $modx->getOption('tpl', $scriptProperties, 'vlVideo');
 $navTpl = $modx->getOption('navTpl', $scriptProperties, 'vlNav');
@@ -29,7 +31,10 @@ $c->limit($limit, $offset);
 $videos = $modx->getCollection('vlVideo', $c);
 foreach($videos as $video)
 {
+    $duration = $video->duration();
+
     $video = $video->toArray();
+    $video['duration'] = $duration;
     $video['image'] = $modx->getOption('assets_url').'components/vidlister/images/'.$video['id'].'.jpg';
     $output .= $modx->getChunk($tpl, $video);
 }

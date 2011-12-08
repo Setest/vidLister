@@ -28,5 +28,14 @@ $_lang['vidlister.video.keywords'] = 'Keywords';
 $_lang['vidlister.video.source'] = 'Source';
 $_lang['vidlister.video.author'] = 'Author';
 $_lang['vidlister.video.duration'] = 'Duration';
+$_lang['vidlister.video.duration.seconds'] = 'Seconds';
 $_lang['vidlister.video.advanced'] = 'Advanced';
 $_lang['vidlister.video.jsondata'] = 'JSON data';
+
+/* Properties */
+$_lang['vidlister.properties.youtubeuser'] = 'Youtube username';
+$_lang['vidlister.properties.tpl'] = 'Video item chunk (template)';
+$_lang['vidlister.properties.source'] = 'Source to get video items for (empty means all)';
+$_lang['vidlister.properties.limit'] = 'Max items per page';
+$_lang['vidlister.properties.offset'] = 'First item (0 = first)';
+$_lang['vidlister.properties.totalvar'] = 'TotalVar name for getPage';

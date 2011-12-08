@@ -89,7 +89,6 @@ $attr = array(
             xPDOTransport::UPDATE_OBJECT => false,
             xPDOTransport::UNIQUE_KEY => 'name',
         ),
-        /*
         'Plugins' => array (
             xPDOTransport::PRESERVE_KEYS => true,
             xPDOTransport::UPDATE_OBJECT => true,
@@ -100,7 +99,6 @@ $attr = array(
             xPDOTransport::UPDATE_OBJECT => false,
             xPDOTransport::UNIQUE_KEY => array('pluginid','event'),
         )
-        */
     )
 );
 $vehicle = $builder->createVehicle($category,$attr);
