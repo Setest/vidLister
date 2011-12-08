@@ -39,7 +39,7 @@ $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
-$builder->createPackage('vidlister','0.1.0','alpha');
+$builder->createPackage('vidlister','0.1.0','dev');
 $builder->registerNamespace('vidlister',false,true,'{core_path}components/vidlister/');
 
 /* load action/menu */
@@ -71,6 +71,9 @@ $category->addMany($snippets);
 
 include $sources['data'].'transport.chunks.php';
 $category->addMany($chunks);
+
+include $sources['data'].'transport.plugins.php';
+$category->addMany($plugins);
 
 /* create category vehicle */
 $attr = array(

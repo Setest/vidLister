@@ -21,7 +21,8 @@ $plugins[0]->setProperties(array(
         'name' => 'user',
         'desc' => 'vidlister.properties.youtubeuser',
         'type' => 'textfield',
-        'options' => 'youtube-username',
-        'value' => '30px',
+        'options' => '',
+        'value' => 'youtube-username',
+        'lexicon' => 'vidlister:default',
     ),
 ));
