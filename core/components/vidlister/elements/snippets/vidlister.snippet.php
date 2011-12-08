@@ -29,7 +29,9 @@ $c->limit($limit, $offset);
 $videos = $modx->getCollection('vlVideo', $c);
 foreach($videos as $video)
 {
-    $output .= $modx->getChunk($tpl, $video->toArray());
+    $video = $video->toArray();
+    $video['image'] = $modx->getOption('assets_url').'components/vidlister/images/'.$video['id'].'.jpg';
+    $output .= $modx->getChunk($tpl, $video);
 }
 
 return $output;

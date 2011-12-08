@@ -6,7 +6,7 @@ VidLister.grid.Videos = function(config) {
         ,baseParams: {
             action: 'mgr/video/getlist'
         }
-        ,fields: ['id', 'active', 'source', 'videoId', 'name', 'description', 'author', 'duration', 'jsondata']
+        ,fields: ['id', 'active', 'source', 'videoId', 'name', 'description', 'keywords', 'author', 'duration', 'jsondata']
         ,paging: true
         ,border: false
         ,frame: false
@@ -177,13 +177,20 @@ VidLister.window.Video = function(config) {
                         xtype: 'textfield'
                         ,fieldLabel: _('vidlister.video.name')
                         ,name: 'name'
-                        ,width: 300
+                        ,width: '98%'
+                        ,allowBlank: false
+                    },{
+                        xtype: 'textfield'
+                        ,fieldLabel: _('vidlister.video.keywords')
+                        ,name: 'keywords'
+                        ,width: '98%'
                         ,allowBlank: false
                     },{
                         xtype: 'textarea'
                         ,fieldLabel: _('vidlister.video.description')
                         ,name: 'description'
-                        ,width: 300
+                        ,width: '98%'
+                        ,height: 200
                         ,allowBlank: false
                     }
                 ]
@@ -193,7 +200,8 @@ VidLister.window.Video = function(config) {
                     xtype: 'textarea'
                     ,fieldLabel: _('vidlister.video.jsondata')
                     ,name: 'jsondata'
-                    ,width: 300
+                    ,width: '98%'
+                    ,height: 300
                     ,allowBlank: true
                 }]
             }]

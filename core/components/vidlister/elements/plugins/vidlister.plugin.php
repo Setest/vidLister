@@ -44,7 +44,7 @@ if($modx->event->name == 'OnVidListerImport')
             $yt = $media->children('http://gdata.youtube.com/schemas/2007');
 
             //get existing video
-            $video = $modx->getObject('vlVideo', array('videoId' => str_replace('http://gdata.youtube.com/feeds/api/videos/', '', $xmlvideo->id)));
+            $video = $modx->getObject('vlVideo', array('source' => 'youtube', 'videoId' => str_replace('http://gdata.youtube.com/feeds/api/videos/', '', $xmlvideo->id)));
             if(!is_object($video))
             {
                 //not found, so create new video and set all fields
@@ -80,6 +80,13 @@ if($modx->event->name == 'OnVidListerImport')
                 ));
             }
             $video->save();
+
+            //get image
+            file_put_contents(
+                $modx->getOption('assets_path').'components/vidlister/images/'.$video->get('id').'.jpg',
+                file_get_contents($media->group->thumbnail[0]->attributes()->url)
+            );
+
             $ids[] = $video->get('id'); //add to found/created ID's array
             $totalVids++;
         }

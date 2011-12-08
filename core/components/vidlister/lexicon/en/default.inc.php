@@ -24,6 +24,7 @@ $_lang['vidlister.video.error.nf'] = 'Video not found';
 $_lang['vidlister.video.active'] = 'Active';
 $_lang['vidlister.video.name'] = 'Name';
 $_lang['vidlister.video.description'] = 'Description';
+$_lang['vidlister.video.keywords'] = 'Keywords';
 $_lang['vidlister.video.source'] = 'Source';
 $_lang['vidlister.video.author'] = 'Author';
 $_lang['vidlister.video.duration'] = 'Duration';
