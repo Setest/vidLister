@@ -1,18 +1,15 @@
 <?php
-if($options[xPDOTransport::PACKAGE_ACTION] == xPDOTransport::ACTION_UPGRADE) {
-	$action = 'upgrade';	
-} elseif ($options[xPDOTransport::PACKAGE_ACTION] == xPDOTransport::ACTION_INSTALL) {
-	$action = 'install';	
-}
 
 $success = false;
-switch ($action) {  
-	case 'upgrade':
+
+// Create a reference to MODx since this resolver is executed from WITHIN a modCategory
+$modx =& $object->xpdo;
+
+switch ($options[xPDOTransport::PACKAGE_ACTION]) {
+	case xPDOTransport::ACTION_UPGRADE:
         $success = true;
         break;
-	case 'install':
-		// Create a reference to MODx since this resolver is executed from WITHIN a modCategory
-		$modx =& $object->xpdo; 
+	case xPDOTransport::ACTION_INSTALL:
 
 		if (!isset($modx->vidlister) || $modx->vidlister == null) {
 			$modx->addPackage('vidlister', $modx->getOption('core_path').'components/vidlister/model/');
@@ -24,4 +21,10 @@ switch ($action) {
 
 		$success = true;
 		break;
+    case xPDOTransport::ACTION_UNINSTALL:
+           $modx->log(xPDO::LOG_LEVEL_INFO,'Uninstalling . . .');
+           $success = true;
+           break;
 }
+
+return $success;

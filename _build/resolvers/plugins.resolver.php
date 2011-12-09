@@ -1,17 +1,22 @@
 <?php
+$success = false;
 
-$plugins = array(
-    'vlYoutube' => array(
-        'OnVidListerImport'
-    ),
-    'vlVimeo' => array(
-        'OnVidListerImport'
-    ),
-);
+// Create a reference to MODx since this resolver is executed from WITHIN a modCategory
+$modx =& $object->xpdo;
 
-$modx->log(xPDO::LOG_LEVEL_INFO, 'Running Plugin Resolver.');
 switch ($options[xPDOTransport::PACKAGE_ACTION]) {
+
     case xPDOTransport::ACTION_INSTALL:
+        $plugins = array(
+            'vlYoutube' => array(
+                'OnVidListerImport'
+            ),
+            'vlVimeo' => array(
+                'OnVidListerImport'
+            ),
+        );
+
+        $modx->log(xPDO::LOG_LEVEL_INFO, 'Running Plugin Resolver.');
         foreach ($plugins as $plugin => $pluginEvents) {
             $pluginObj = $modx->getObject('modPlugin', array('name' => $plugin));
             if (!$pluginObj) $modx->log(xPDO::LOG_LEVEL_INFO, 'Cannot get object: ' . $plugin);
@@ -38,5 +43,12 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
                 }
             }
         }
+        $success = true;
+        break;
+    case xPDOTransport::ACTION_UNINSTALL:
+        $modx->log(xPDO::LOG_LEVEL_INFO,'Uninstalling . . .');
+        $success = true;
         break;
 }
+
+return $success;
