@@ -5,6 +5,7 @@ $modx->lexicon->load('vidlister:default');
 
 //settings
 $tpl = $modx->getOption('tpl', $scriptProperties, '{"youtube":"vlYoutube","vimeo":"vlVimeo"}');
+$scripts = $modx->getOption('scripts', $scriptProperties, '1');
 
 //template per source set using JSON
 $tpls = $modx->fromJSON($tpl);
@@ -16,6 +17,17 @@ $where = !empty($where) ? $modx->fromJSON($where) : array();
 $limit = $modx->getOption('limit', $scriptProperties, 10);
 $offset = $modx->getOption('offset', $scriptProperties, 0);
 $totalVar = $modx->getOption('totalVar', $scriptProperties, 'total');
+
+if($scripts)
+{
+    $modx->regClientStartupHTMLBlock('<link rel="stylesheet" type="text/css" href="assets/components/vidlister/js/web/prettyPhoto/css/prettyPhoto.css" />');
+    $modx->regClientStartupScript('assets/components/vidlister/js/web/prettyPhoto/js/jquery.prettyPhoto.js');
+    $modx->regClientStartupHTMLBlock('<script type="text/javascript">
+        $(document).ready(function(){
+        	$("a[rel^=\'prettyPhoto\']").prettyPhoto();
+        });
+      </script>');
+}
 
 $output = '';
 

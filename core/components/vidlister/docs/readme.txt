@@ -1,12 +1,12 @@
 #############################################################
-#            VidLister: show videos on your site            #
-#                                                           #
-# Version: 1.0.0 alpha                                      #
-# Released: 2011-12-09                                      #
-#                                                           #
-# Author: Jeroen Kenters Web Development / www.kenters.com  #
-#                                                           #
-# License: GNU GENERAL PUBLIC LICENSE, Version 2            #
+VidLister
+
+Version: 1.0.0 alpha
+Released: 2011-12-09
+
+Author: Jeroen Kenters Web Development / www.kenters.com
+
+License: GNU GENERAL PUBLIC LICENSE, Version 2
 #############################################################
 
 ==========================================
@@ -27,7 +27,7 @@ lightbox.
 ==========================================
  Requirements
 ==========================================
-* MODX Revolution (tested with 2.1 and 2.2)
+* MODX Revolution (tested using 2.1 and 2.2)
 * getPage
 * jQuery for the lightbox
 
@@ -41,10 +41,10 @@ lightbox.
 ==========================================
 
 Import:
-- Go to one of the 2 (or both) provided plugins (vlYouTube or vlVimeo)
+- open one of the 2 (or both) provided plugins (vlYouTube or vlVimeo)
 - go to properies
 - create a new property set
-- fill in the details
+- fill in the details (for Vimeo visit http://vimeo.com/api/applications/new first)
 - save the property set
 - go to the events tab
 - select the created property set for the VidListerImport event
@@ -54,7 +54,6 @@ Import:
 - your videos should be listed after import
 
 Snippet:
-- Add [[!getPage? &element=`VidLister`]] [[+page.nav]] to your page
-- add <script type="text/javascript" src="assets/components/vidlister/js/web/prettyPhoto/js/jquery.prettyPhoto.js"></script>
-  and <link rel="stylesheet" type="text/css" href="/assets/components/vidlister/js/web/prettyPhoto/css/prettyPhoto.css" />
-  to your template <head>
+- add [[!getPage? &element=`VidLister`]] [[+page.nav]] to your page
+- make sure you already have jQuery in your website template: VidLister does not add it
+- if you want to add the js/css yourself add &scripts=`0` to the snippet call
