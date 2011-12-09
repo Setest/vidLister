@@ -1,7 +1,22 @@
 <?php
 class vlVideo extends xPDOSimpleObject {
 
-    function duration()
+    public function remove (array $ancestors = array()) {
+            $path = $this->xpdo->getOption('base_path') . 'assets/components/vidlister/images/';
+            $path .= $this->get('id').'.jpg';
+            if (file_exists($path)) {
+                @chmod($path,0777);
+                fclose(fopen($path,'a'));
+                if (unlink($path)) {
+                    return parent::remove($ancestors);
+                }
+            } else {
+                return parent::remove($ancestors);
+            }
+            return false;
+    }
+
+    public function duration()
    	{
         $seconds_count = $this->get('duration');
 

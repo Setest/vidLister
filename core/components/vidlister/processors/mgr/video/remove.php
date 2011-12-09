@@ -1,5 +1,6 @@
 <?php
-if($modx->removeObject('vlVideo', array('id' => $_REQUEST['id']))) {
+$video = $modx->getObject('vlVideo', array('id' => $_REQUEST['id']));
+if(is_object($video) && $video->remove()) {
     return $modx->error->success('');
 }
 else {
