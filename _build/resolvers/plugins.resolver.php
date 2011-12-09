@@ -31,7 +31,7 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
                     if ($evtcount != 1) {
                         $evt = $modx->newObject('modEvent');
                         $evt->set('name', $event);
-                        $evt->set('service', 2);
+                        $evt->set('service', 6);
                         $evt->set('groupname', 'VidLister');
                         $evt->save();
                     }
