@@ -34,8 +34,11 @@ $_lang['vidlister.video.jsondata'] = 'JSON data';
 
 /* Properties */
 $_lang['vidlister.properties.youtubeuser'] = 'Youtube username';
+$_lang['vidlister.properties.vimeouser'] = 'Vimeo username';
+$_lang['vidlister.properties.vimeokey'] = 'Vimeo api key (consumer key)';
+$_lang['vidlister.properties.vimeosecret'] = 'Vimeo api secret (comsumer secret)';
 $_lang['vidlister.properties.tpl'] = 'Video item chunk (template)';
-$_lang['vidlister.properties.source'] = 'Source to get video items for (empty=all)';
+$_lang['vidlister.properties.where'] = 'A JSON-style expression of criteria';
 $_lang['vidlister.properties.limit'] = 'Max items per page';
 $_lang['vidlister.properties.offset'] = 'First item (0 = first)';
 $_lang['vidlister.properties.totalvar'] = 'TotalVar name for getPage';

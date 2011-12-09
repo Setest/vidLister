@@ -4,9 +4,12 @@ $modx->getService('vidlister','VidLister',$modx->getOption('vidlister.core_path'
 $modx->lexicon->load('vidlister:default');
 
 //settings
-$tpl = $modx->getOption('tpl', $scriptProperties, 'vlVideo');
-$navTpl = $modx->getOption('navTpl', $scriptProperties, 'vlNav');
-$source = $modx->getOption('source', $scriptProperties, '');
+$tpl = $modx->getOption('tpl', $scriptProperties, '{"youtube":"vlYoutube","vimeo":"vlVimeo"}');
+
+//template per source set using JSON
+$tpls = $modx->fromJSON($tpl);
+
+$where = $modx->getOption('where', $scriptProperties, '');
 $where = !empty($where) ? $modx->fromJSON($where) : array();
 
 //getPage setings
@@ -22,12 +25,7 @@ $c = $modx->newQuery('vlVideo');
 if (!empty($where)) {
     $c->where($where);
 }
-$conditions = array();
-if( !empty($source))
-{
-    $conditions['source'] = $source;
-}
-$c->andCondition($conditions);
+$c->andCondition(array('active' => 1));
 
 //set placeholder for getPage
 $modx->setPlaceholder($totalVar, $modx->getCount('vlVideo', $c));
@@ -40,9 +38,18 @@ foreach($videos as $video)
     $duration = $video->duration();
 
     $video = $video->toArray();
+    $source = $video['source'];
     $video['duration'] = $duration;
     $video['image'] = $modx->getOption('assets_url').'components/vidlister/images/'.$video['id'].'.jpg';
-    $output .= $modx->getChunk($tpl, $video);
+
+    if(isset($tpls[$source]))
+    {
+        $output .= $modx->getChunk($tpls[$source], $video);
+    }
+    else
+    {
+        $output .= $modx->getChunk($tpl, $video);
+    }
 }
 
 return $output;

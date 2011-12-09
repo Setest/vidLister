@@ -1,9 +1,12 @@
 <?php
 
 $plugins = array(
-    'VidLister' => array(
+    'vlYoutube' => array(
         'OnVidListerImport'
-    )
+    ),
+    'vlVimeo' => array(
+        'OnVidListerImport'
+    ),
 );
 
 $modx->log(xPDO::LOG_LEVEL_INFO, 'Running Plugin Resolver.');
