@@ -7,6 +7,7 @@ $modx->lexicon->load('vidlister:default');
 $tpl = $modx->getOption('tpl', $scriptProperties, 'vlVideo');
 $navTpl = $modx->getOption('navTpl', $scriptProperties, 'vlNav');
 $source = $modx->getOption('source', $scriptProperties, '');
+$where = !empty($where) ? $modx->fromJSON($where) : array();
 
 //getPage setings
 $limit = $modx->getOption('limit', $scriptProperties, 10);
@@ -16,6 +17,11 @@ $totalVar = $modx->getOption('totalVar', $scriptProperties, 'total');
 $output = '';
 
 $c = $modx->newQuery('vlVideo');
+
+//criteria
+if (!empty($where)) {
+    $c->where($where);
+}
 $conditions = array();
 if( !empty($source))
 {
