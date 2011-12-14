@@ -15,7 +15,8 @@ if($modx->event->name == 'OnVidListerImport')
         require_once($modx->getOption('core_path').'components/vidlister/model/vimeo/vimeo.class.php');
         $vimeo = new phpVimeo($consumer_key,$consumer_secret);
 
-        foreach($users as $user) {
+        foreach($users as $user)
+        {
             $modx->log(modx::LOG_LEVEL_WARN, $modx->lexicon('vidlister.import.started', array('source' => $source, 'user' => $user)));
 
             $videos = $vimeo->call('vimeo.videos.getUploaded', array('user_id' => $user));
