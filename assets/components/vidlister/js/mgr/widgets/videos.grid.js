@@ -184,7 +184,7 @@ VidLister.window.Video = function(config) {
                         ,fieldLabel: _('vidlister.video.keywords')
                         ,name: 'keywords'
                         ,width: '98%'
-                        ,allowBlank: false
+                        ,allowBlank: true
                     },{
                         xtype: 'textarea'
                         ,fieldLabel: _('vidlister.video.description')

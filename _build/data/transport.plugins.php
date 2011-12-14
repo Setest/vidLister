@@ -16,6 +16,14 @@ $plugins[0]->setProperties(array(
         'value' => '',
         'lexicon' => 'vidlister:default',
     ),
+    array(
+        'name' => 'active',
+        'desc' => 'vidlister.properties.active',
+        'type' => 'combo-boolean',
+        'options' => '',
+        'value' => false,
+        'lexicon' => 'vidlister:default',
+    ),
 ));
 
 $plugins[1] = $modx->newObject('modPlugin');
@@ -48,5 +56,13 @@ $plugins[1]->setProperties(array(
         'options' => '',
         'value' => '',
         'lexicon' => 'vidlister:default',
+    ),
+    array(
+            'name' => 'active',
+            'desc' => 'vidlister.properties.active',
+            'type' => 'combo-boolean',
+            'options' => '',
+            'value' => false,
+            'lexicon' => 'vidlister:default',
     ),
 ));

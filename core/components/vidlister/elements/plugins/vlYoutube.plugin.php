@@ -2,6 +2,7 @@
 if($modx->event->name == 'OnVidListerImport')
 {
     $user = $modx->getOption('user', $scriptProperties, ''); //get user name(s)
+    $active = $modx->getOption('active', $scriptProperties, false); //make imported videos inactive by default
 
     if(!empty($user))
     {
@@ -21,7 +22,7 @@ if($modx->event->name == 'OnVidListerImport')
         {
             $modx->log(MODx::LOG_LEVEL_WARN, $modx->lexicon('vidlister.import.started', array('source' => 'Youtube', 'user' => $user)));
 
-            @$response = $modx->rest->request('http://gdata.youtube.com','/feeds/api/users/'.$user.'/uploads','GET', array('max-results' => 5), array())->response;
+            @$response = $modx->rest->request('http://gdata.youtube.com','/feeds/api/users/'.$user.'/uploads','GET', array('max-results' => 1), array())->response;
             //@ to prevent PHP notice about $xml being empty (???)
             if(empty($response))
             {
@@ -35,8 +36,7 @@ if($modx->event->name == 'OnVidListerImport')
 
             //calculate total number of "pages" (each feed only lists 50 videos)
             $totalVids = $openSearch->totalResults;
-            $perPage = $openSearch->itemsPerPage;
-            $pages = ceil($totalVids/$perPage);
+            $pages = ceil($totalVids/50);
 
             //every movie not in this array will be deleted after import (no longer on Youtube)
             $ids = array();
@@ -50,10 +50,10 @@ if($modx->event->name == 'OnVidListerImport')
             //get videos of each page
             for($page=1; $page <= $pages; $page++)
             {
-                @$response = $modx->rest->request('http://gdata.youtube.com','/feeds/api/users/'.$user.'/uploads','GET', array('max-results' => 5,'start-index' => $startIndex), array())->response;
+                @$response = $modx->rest->request('http://gdata.youtube.com','/feeds/api/users/'.$user.'/uploads','GET', array('max-results' => 50,'start-index' => $startIndex), array())->response;
                 $xmlvideos = simplexml_load_string($response);
-                
-                $modx->log(MODx::LOG_LEVEL_INFO, 'Page '.$page);
+
+                $modx->log(MODx::LOG_LEVEL_INFO, $page);
 
                 //loop through video entries
                 foreach($xmlvideos->entry as $xmlvideo)
@@ -69,6 +69,7 @@ if($modx->event->name == 'OnVidListerImport')
                         //not found, so create new video and set all fields
                         $video = $modx->newObject('vlVideo');
                         $video->fromArray(array(
+                            'active' => (int)$active,
                             'source' => 'youtube',
                             'videoId' =>  str_replace('http://gdata.youtube.com/feeds/api/videos/', '', $xmlvideo->id),
                             'name' => $xmlvideo->title,

@@ -1,3 +1,14 @@
+VidLister 1.0.0 Alpha3
+====================================
+- Fixed JS path typo in snippet
+
+VidLister 1.0.0 Alpha2
+====================================
+- Youtube import now imports all videos instead of the 25 latest
+- Added 'active' property to Youtube & Vimeo plugin. Set to 'Yes' to activate imported videos
+- Added 'sortby' and 'sortdir' snippet properties to allow sorting
+- Keywords field is now optional
+
 VidLister 1.0.0 Alpha
 ====================================
 - Initial release

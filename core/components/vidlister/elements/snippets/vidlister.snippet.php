@@ -6,6 +6,8 @@ $modx->lexicon->load('vidlister:default');
 //settings
 $tpl = $modx->getOption('tpl', $scriptProperties, '{"youtube":"vlYoutube","vimeo":"vlVimeo"}');
 $scripts = $modx->getOption('scripts', $scriptProperties, '1');
+$sortby = $modx->getOption('sortby', $scriptProperties, 'id');
+$sortdir = $modx->getOption('sortdir', $scriptProperties, 'ASC');
 
 //template per source set using JSON
 $tpls = $modx->fromJSON($tpl);
@@ -20,8 +22,8 @@ $totalVar = $modx->getOption('totalVar', $scriptProperties, 'total');
 
 if($scripts)
 {
-    $modx->regClientStartupHTMLBlock('<link rel="stylesheet" type="text/css" href="assets/components/vidlister/js/web/prettyPhoto/css/prettyPhoto.css" />');
-    $modx->regClientStartupScript('assets/components/vidlister/js/web/prettyPhoto/js/jquery.prettyPhoto.js');
+    $modx->regClientStartupHTMLBlock('<link rel="stylesheet" type="text/css" href="assets/components/vidlister/js/web/prettyphoto/css/prettyPhoto.css" />');
+    $modx->regClientStartupScript('assets/components/vidlister/js/web/prettyPhoto/js/jquery.prettyphoto.js');
     $modx->regClientStartupHTMLBlock('<script type="text/javascript">
         $(document).ready(function(){
         	$("a[rel^=\'prettyPhoto\']").prettyPhoto();
@@ -42,6 +44,7 @@ $c->andCondition(array('active' => 1));
 //set placeholder for getPage
 $modx->setPlaceholder($totalVar, $modx->getCount('vlVideo', $c));
 
+$c->sortby($sortby, $sortdir);
 $c->limit($limit, $offset);
 
 $videos = $modx->getCollection('vlVideo', $c);

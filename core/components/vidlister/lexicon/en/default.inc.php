@@ -33,6 +33,7 @@ $_lang['vidlister.video.advanced'] = 'Advanced';
 $_lang['vidlister.video.jsondata'] = 'JSON data';
 
 /* Properties */
+$_lang['vidlister.properties.active'] = 'Activate imported videos';
 $_lang['vidlister.properties.youtubeuser'] = 'Youtube username';
 $_lang['vidlister.properties.vimeouser'] = 'Vimeo username';
 $_lang['vidlister.properties.vimeokey'] = 'Vimeo api key (consumer key)';

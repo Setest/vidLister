@@ -4,6 +4,7 @@ if($modx->event->name == 'OnVidListerImport')
     $consumer_key = $modx->getOption('consumer_key', $scriptProperties, '');
     $consumer_secret = $modx->getOption('consumer_secret', $scriptProperties, '');
     $user = $modx->getOption('user', $scriptProperties, ''); //get user name(s)
+    $active = $modx->getOption('active', $scriptProperties, false); //make imported videos inactive by default
     $source = 'vimeo';
 
     if(!empty($consumer_key) && !empty($consumer_secret) && !empty($user))
@@ -45,6 +46,7 @@ if($modx->event->name == 'OnVidListerImport')
                         }
 
                         $vid->fromArray(array(
+                            'active' => (int)$active,
                             'source' => $source,
                             'videoId' =>  $video->id,
                             'name' => $video->title,

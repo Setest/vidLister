@@ -39,7 +39,7 @@ $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
-$builder->createPackage('vidlister','1.0.0','alpha');
+$builder->createPackage('vidlister','1.0.0','alpha2');
 $builder->registerNamespace('vidlister',false,true,'{core_path}components/vidlister/');
 
 /* load action/menu */
