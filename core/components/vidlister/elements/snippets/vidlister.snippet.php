@@ -23,7 +23,7 @@ $totalVar = $modx->getOption('totalVar', $scriptProperties, 'total');
 if($scripts)
 {
     $modx->regClientStartupHTMLBlock('<link rel="stylesheet" type="text/css" href="assets/components/vidlister/js/web/prettyphoto/css/prettyPhoto.css" />');
-    $modx->regClientStartupScript('assets/components/vidlister/js/web/prettyPhoto/js/jquery.prettyphoto.js');
+    $modx->regClientStartupScript('assets/components/vidlister/js/web/prettyphoto/js/jquery.prettyPhoto.js');
     $modx->regClientStartupHTMLBlock('<script type="text/javascript">
         $(document).ready(function(){
         	$("a[rel^=\'prettyPhoto\']").prettyPhoto();
