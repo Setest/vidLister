@@ -1,3 +1,12 @@
+VidLister 1.0.0 Alpha5
+====================================
+- Added idx (index) placeholder to snippet
+
+VidLister 1.0.0 Alpha4
+====================================
+- All fields editable
+- New video button
+
 VidLister 1.0.0 Alpha3
 ====================================
 - Fixed JS path typo in snippet

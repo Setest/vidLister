@@ -47,6 +47,7 @@ $modx->setPlaceholder($totalVar, $modx->getCount('vlVideo', $c));
 $c->sortby($sortby, $sortdir);
 $c->limit($limit, $offset);
 
+$idx = 0; //index
 $videos = $modx->getCollection('vlVideo', $c);
 foreach($videos as $video)
 {
@@ -56,6 +57,7 @@ foreach($videos as $video)
     $source = $video['source'];
     $video['duration'] = $duration;
     $video['image'] = $modx->getOption('assets_url').'components/vidlister/images/'.$video['id'].'.jpg';
+    $video['idx'] = $idx; //index
 
     if(isset($tpls[$source]))
     {
@@ -65,6 +67,7 @@ foreach($videos as $video)
     {
         $output .= $modx->getChunk($tpl, $video);
     }
+    $idx++;
 }
 
 return $output;
