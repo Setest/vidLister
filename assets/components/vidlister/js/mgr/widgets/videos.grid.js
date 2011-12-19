@@ -47,8 +47,11 @@ VidLister.grid.Videos = function(config) {
             ,width: 2
         }]
         ,tbar: [{
-            text: _('vidlister.import')
-            ,handler: this.doImport
+                text: _('vidlister.import')
+                ,handler: this.doImport
+            },{
+                text: _('vidlister.video.new')
+                ,handler: this.addVideo
         }]
     });
     VidLister.grid.Videos.superclass.constructor.call(this,config)
@@ -96,6 +99,17 @@ Ext.extend(VidLister.grid.Videos,MODx.grid.Grid,{
             }
         });
 
+    }
+    ,addVideo: function(btn,e) {
+        this.VideoWindow = MODx.load({
+            xtype: 'vidlister-window-video'
+            ,listeners: {
+                'success': {fn:this.refresh,scope:this}
+            }
+        });
+        this.VideoWindow.show(e.target);
+        this.VideoWindow.setTitle(_('vidlister.video.new'));
+        this.VideoWindow.reset();
     }
     ,updateVideo: function(btn,e) {
         this.VideoWindow = MODx.load({
@@ -166,13 +180,39 @@ VidLister.window.Video = function(config) {
                         xtype: 'hidden'
                         ,name: 'id'
                     },{
-                        xtype: 'hidden'
-                        ,name: 'source'
-                    },{
                         xtype: 'xcheckbox'
                         ,fieldLabel: _('vidlister.video.active')
                         ,name: 'active'
                         ,inputValue: 1
+                    },{
+                        xtype: 'textfield'
+                        ,fieldLabel: _('vidlister.video.id')
+                        ,name: 'videoId'
+                        ,width: '98%'
+                        ,allowBlank: false
+                    },{
+                        xtype: 'modx-combo'
+                        ,fieldLabel: _('vidlister.video.source')
+                        ,name: 'source'
+                        ,width: '98%'
+                        ,url: VidLister.config.connectorUrl
+                        ,fields: ['source']
+                        ,displayField: 'source'
+                        ,valueField: 'source'
+                        ,baseParams: { action: 'mgr/video/getsources' }
+                        ,allowBlank: false
+                    },{
+                        xtype: 'textfield'
+                        ,fieldLabel: _('vidlister.video.author')
+                        ,name: 'author'
+                        ,width: '98%'
+                        ,allowBlank: false
+                    },{
+                        xtype: 'numberfield'
+                        ,fieldLabel: _('vidlister.video.duration')
+                        ,name: 'duration'
+                        ,width: '98%'
+                        ,allowBlank: false
                     },{
                         xtype: 'textfield'
                         ,fieldLabel: _('vidlister.video.name')
@@ -191,7 +231,7 @@ VidLister.window.Video = function(config) {
                         ,name: 'description'
                         ,width: '98%'
                         ,height: 200
-                        ,allowBlank: false
+                        ,allowBlank: true
                     }
                 ]
             },{

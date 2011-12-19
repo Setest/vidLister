@@ -53,8 +53,6 @@ if($modx->event->name == 'OnVidListerImport')
                 @$response = $modx->rest->request('http://gdata.youtube.com','/feeds/api/users/'.$user.'/uploads','GET', array('max-results' => 50,'start-index' => $startIndex), array())->response;
                 $xmlvideos = simplexml_load_string($response);
 
-                $modx->log(MODx::LOG_LEVEL_INFO, $page);
-
                 //loop through video entries
                 foreach($xmlvideos->entry as $xmlvideo)
                 {
